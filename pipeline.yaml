@@ -1,0 +1,23 @@
+# The pinned shared pipeline (machine-readable). Studies read this, and every manifest copies tag + commit.
+pipeline:
+  name: sae-ethos-pipeline
+  repo: https://github.com/RandallSPQR/SAE-Ethos-Calibration
+  tag: v1.2.0
+  commit: 5ca15f56a71f35d5818d0392f7f3b4acb2d85d1b
+  tag_object: aedd002b6a2050547011aef210562e15ef588b51
+  parent: 94a785c15ec8c3207cb1fbd4a5c321309f07eecb      # v1.1.0
+  locked: true
+  install: 'pip install "sae-ethos-pipeline @ git+https://github.com/RandallSPQR/SAE-Ethos-Calibration@5ca15f56a71f35d5818d0392f7f3b4acb2d85d1b"'
+  published: false        # 2026-10-31: built and tagged; push to GitHub pending (see PIPELINE.md)
+  lineup_file: pipeline/lineup/lineup.yaml
+models:
+  llama-3.1-8b-it: {hf_id: meta-llama/Llama-3.1-8B-Instruct, revision: 0e9e39f249a16976918f6564b8830bc894c89659, weight_hash: 495b73750141622d, chat_template_hash: e10ca381b1ccc5cf, family: llama3,  identity: pod_pinned}
+  gemma-2-9b-it:   {hf_id: google/gemma-2-9b-it,             revision: 11c9b309abf73637e4b6f9a3fa1e92e615547819, weight_hash: 7055bc8c5f456ced, chat_template_hash: ecd6ae513fe103f0, family: gemma2,  identity: pod_pinned}
+  gemma-3-27b-it:  {hf_id: google/gemma-3-27b-it,            revision: 005ad3404e59d6023443cb575daa05336842228a, weight_hash: 34f745e7c6ef5b7b, chat_template_hash: 7de1c58e208eda46, family: gemma3,  identity: pod_pinned}
+  qwen3.5-9b:      {hf_id: Qwen/Qwen3.5-9B,                  revision: c202236235762e1c871ad0ccb60c8ee5ba337b9a, weight_hash: 4b570a1e6e5db4b9, chat_template_hash: a4aee8afcf2e0711, family: qwen3_5, identity: metadata_pinned}
+  qwen3.5-27b:     {hf_id: Qwen/Qwen3.5-27B,                 revision: fc05daec18b0a78c049392ed2e771dde82bdf654, weight_hash: 5e536c8708a9430b, chat_template_hash: a4aee8afcf2e0711, family: qwen3_5, identity: metadata_pinned}
+serving:
+  pins: {vllm: "0.19.1", torch: "2.10.0", transformers: "5.5.3", tokenizers: "0.22.2", huggingface-hub: "1.10.2"}
+  batch_size: 1
+  flags: ["--max-num-seqs 1", "--no-enable-prefix-caching", "--max-num-batched-tokens 8192", "--seed 0", "--logprobs-mode raw_logprobs", "--dtype bfloat16"]
+box_identity_check: {status: not_run, reason: "no GPU spend authorised (2026-10-31)"}
