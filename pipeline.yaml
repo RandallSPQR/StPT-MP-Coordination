@@ -4,11 +4,12 @@ pipeline:
   repo: https://github.com/RandallSPQR/SAE-Ethos-Calibration
   tag: v1.2.0
   commit: 5ca15f56a71f35d5818d0392f7f3b4acb2d85d1b
-  tag_object: aedd002b6a2050547011aef210562e15ef588b51
+  tag_object: null        # the GitHub tag is LIGHTWEIGHT (points at the commit); the annotated object aedd002b6a20 from the build bundle was not published
   parent: 94a785c15ec8c3207cb1fbd4a5c321309f07eecb      # v1.1.0
+  main_merge: 4632409d06fa03a8de58d01d35c14ec2f029e49e  # PR #16; tree identical to the tagged commit
   locked: true
   install: 'pip install "sae-ethos-pipeline @ git+https://github.com/RandallSPQR/SAE-Ethos-Calibration@5ca15f56a71f35d5818d0392f7f3b4acb2d85d1b"'
-  published: false        # 2026-10-31: built and tagged; push to GitHub pending (see PIPELINE.md)
+  published: true         # 2026-10-31: branch release/v1.2.0 and tag v1.2.0 on GitHub; main = merge 4632409 (PR #16), same tree
   lineup_file: pipeline/lineup/lineup.yaml
 models:
   llama-3.1-8b-it: {hf_id: meta-llama/Llama-3.1-8B-Instruct, revision: 0e9e39f249a16976918f6564b8830bc894c89659, weight_hash: 495b73750141622d, chat_template_hash: e10ca381b1ccc5cf, family: llama3,  identity: pod_pinned}

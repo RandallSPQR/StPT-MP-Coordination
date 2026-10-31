@@ -1,13 +1,17 @@
 # Pinned pipeline release
 
 **sae-ethos-pipeline v1.2.0**, LOCKED.
-- Commit: `5ca15f56a71f35d5818d0392f7f3b4acb2d85d1b`. Tag object: `aedd002b6a20`. Parent: v1.1.0 `94a785c15ec8`.
+- Commit: `5ca15f56a71f35d5818d0392f7f3b4acb2d85d1b`. Parent: v1.1.0 `94a785c15ec8`.
 - Repository: https://github.com/RandallSPQR/SAE-Ethos-Calibration (`pipeline/lineup/`, `RELEASE_NOTES.md`).
 - Machine-readable: `pipeline.yaml`.
 
-**Publication status (2026-10-31): built and tagged, but NOT yet pushed to GitHub.** The session that built it was
-refused push access to SAE-Ethos-Calibration. The tagged commit is preserved as a git bundle, which keeps hashes
-exactly (see the StPT repository's `handoff/`). Until it is pushed, the install line in `pipeline.yaml` does not resolve.
+**Publication status (2026-10-31): published.**
+- Branch `release/v1.2.0` and tag `v1.2.0` are on GitHub, both at `5ca15f56a71f`.
+- `main` took it by merge commit `4632409d06fa` (PR #16), whose tree is identical to the tagged commit.
+- The tag is lightweight: it points at the commit itself. The annotated tag object `aedd002b6a20` made at build time
+  was not published. Pins therefore name the commit, which is what every manifest checks.
+- The install line in `pipeline.yaml` resolves. A clean install at the pinned commit passes StPT's
+  `check_environment` for all five models.
 
 ## Models
 
