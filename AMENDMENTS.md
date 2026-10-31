@@ -12,6 +12,8 @@ Two kinds of entry, never mixed:
 | A1 | 2026-10-31 | both | Pipeline v1.2.0 created and locked: Qwen3.5 pair added, one vLLM 0.19.1 serving stack, exact binary readout, identity block (`PIPELINE.md`). | none: no study data exists |
 | A2 | 2026-10-31 | both | Record update, no design change. Pipeline v1.2.0 published on GitHub (lightweight tag at the pinned commit; `main` merge `4632409`, same tree). This record published at `93a9ee7`. Coordination location accepted (D7). StPT re-pins this record at the commit that adds this entry. | none: no study data exists |
 
+| A3 | 2026-10-31 | both | Decisions D8–D11 accepted. **Known defect in pipeline v1.2.0, not fixed in place:** `pipeline/lineup/pod/serve_lineup.sh` runs `python -m lineup.serve`, which cannot import `lineup` from an installed copy. The serving command itself is correct: the `lineup-serve-cmd` console script works. StPT's S0 driver (`gates/S0/gpu/box_identity.sh`) performs the same steps with the pipeline's own functions and console scripts. A fix would be v1.2.1. | none: no study data exists |
+
 ## Post-outcome deviations
 
 None.
