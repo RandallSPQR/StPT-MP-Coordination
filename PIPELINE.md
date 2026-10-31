@@ -37,13 +37,16 @@ recomputes to its pin. Report: `pipeline/lineup/identity_reports/offline_2026-10
   `--seed 0`, bf16, text only.
 - Environment: `CUBLAS_WORKSPACE_CONFIG=:4096:8`, `PYTHONHASHSEED=0`.
 
-**Not yet established: the box identity check** (`pipeline/lineup/pod/serve_lineup.sh`). It covers:
-- `--hash` re-read of the weights;
-- tokenizer facts and template agreement on the box;
-- 8-request bit-identity;
-- exact-fallback consistency.
-
-It needs one GPU pod per model. Until it runs, "deterministic kernels" on this stack is a requirement, not a result.
+**Box identity check: PASSED, 2026-10-31** (StPT gate S0, `gates/S0/S0_REPORT.md` section 1b).
+- GPU: one RTX PRO 6000 Blackwell Server Edition. Stack observed: Python 3.11.13, vLLM 0.19.1, torch 2.10.0+cu128,
+  transformers 5.5.3.
+- All five models: weights re-hashed from the bytes to their pins (the two Qwen metadata pins included); tokenizer facts
+  and template agreement hold; 8 identical requests on 3 prompts are bit-identical within a server start; the exact
+  fallback agrees.
+- **Not bit-identical across a server restart** for 4 of 5 models: 1–2 bf16 steps on the logit, at most 0.25 nats.
+  Gemma-2-9B is identical. The cause is not established (the kernel autotuner is a candidate).
+- Determinism is established on this GPU type only.
+- **Known defect:** `pipeline/lineup/pod/serve_lineup.sh` cannot import `lineup` (A3). StPT's driver replaces it.
 
 ## Change policy
 

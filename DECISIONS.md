@@ -45,8 +45,11 @@ Superseded entries are struck through and kept.
   - Bank sizes.
   - Bridge memory policy and attribution.
   - Power tier.
-- **GPU type for all StPT / Missing Piece serving.** Determinism is established per GPU type. Proposed: A100 80GB, the
-  type of S0's box check.
+- **GPU type for all StPT / Missing Piece serving.** Determinism is established per GPU type. Proposed: RTX PRO 6000
+  Blackwell Server Edition, the type S0's box check passed on (the owner's fallback when no A100 was available).
+- **Server-restart drift** (S0 finding): logprobs move by up to 0.25 nats across a vLLM restart for 4 of 5 models.
+  The choice is (a) accept it, recording the server start and measuring S4 noise across starts, or (b) test candidate
+  settings for a v1.2.1 serving stack first. Recommended: (b), before StPT S4.
 - **System messages.** Gemma-2's official template refuses a system role. The pipeline's gemma2 serializer folds system
   text into the first user turn (turn 0), as the earlier Gemma-2 work did. Template agreement is therefore checked on
   system-free conversations, where all five models agree (StPT S0). Whether StPT and MP prompts use a system message is
