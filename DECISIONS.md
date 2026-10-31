@@ -18,6 +18,8 @@ Superseded entries are struck through and kept.
 | D9 | 2026-10-31 | both | One serving stack for all five models: vLLM 0.19.1, torch 2.10.0, transformers 5.5.3; batch size 1, raw logprobs, prefix cache off (was P3). | owner approval in the StPT session |
 | D10 | 2026-10-31 | both | All five models served in bf16, including Gemma-2-9B (was P4). | owner approval in the StPT session |
 | D11 | 2026-10-31 | StPT | GPU spend approved for S0's box identity check (one pod, five models in sequence, 4 h hard cap). | owner approval in the StPT session |
+| D12 | 2026-10-31 | both | Serving GPU type = NVIDIA RTX PRO 6000 Blackwell Server Edition (determinism is established on it); not the A100. | owner, after a cost/availability comparison |
+| D13 | 2026-10-31 | both | Restart drift: option (b), test candidate settings for a v1.2.1 serving stack. | owner approval in the StPT session |
 
 ## Proposed (Step 0, 2026-10-31; awaiting the owner)
 
@@ -45,11 +47,13 @@ Superseded entries are struck through and kept.
   - Bank sizes.
   - Bridge memory policy and attribution.
   - Power tier.
-- **GPU type for all StPT / Missing Piece serving.** Determinism is established per GPU type. Proposed: RTX PRO 6000
-  Blackwell Server Edition, the type S0's box check passed on (the owner's fallback when no A100 was available).
-- **Server-restart drift** (S0 finding): logprobs move by up to 0.25 nats across a vLLM restart for 4 of 5 models.
-  The choice is (a) accept it, recording the server start and measuring S4 noise across starts, or (b) test candidate
-  settings for a v1.2.1 serving stack first. Recommended: (b), before StPT S4.
+- **Server-restart drift.** The owner chose option (b): test settings for a v1.2.1 serving stack (2026-10-31).
+  Result (StPT `gates/S0/S0_REPORT.md` 4b):
+  - **C2e** = `VLLM_BATCH_INVARIANT=1` + `--attention-backend FLASH_ATTN` + `--enforce-eager` is bit-identical across
+    cold starts for Llama-8B and Qwen3.5-9B. The other three settings tested are not.
+  - Its cost: +84% / +34% per call.
+  - Open: confirm C2e on all five models, then release it as v1.2.1 (both studies re-pin).
+
 - **System messages.** Gemma-2's official template refuses a system role. The pipeline's gemma2 serializer folds system
   text into the first user turn (turn 0), as the earlier Gemma-2 work did. Template agreement is therefore checked on
   system-free conversations, where all five models agree (StPT S0). Whether StPT and MP prompts use a system message is
