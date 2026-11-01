@@ -20,6 +20,7 @@ Superseded entries are struck through and kept.
 | D11 | 2026-10-31 | StPT | GPU spend approved for S0's box identity check (one pod, five models in sequence, 4 h hard cap). | owner approval in the StPT session |
 | D12 | 2026-10-31 | both | Serving GPU type = NVIDIA RTX PRO 6000 Blackwell Server Edition (determinism is established on it); not the A100. | owner, after a cost/availability comparison |
 | D13 | 2026-10-31 | both | Restart drift: option (b), test candidate settings for a v1.2.1 serving stack. | owner approval in the StPT session |
+| D14 | 2026-11-01 | both | **Server-restart drift: option (a), accepted on pipeline v1.2.0 with blocking** (prospective; no study data exists). (1) Every run manifest records the server-start ID. (2) Block by server start: all paired contrasts run within the same start (StPT live vs blind, and pulsed vs unpulsed branches; Missing Piece's four cells per scenario); conditions are balanced across starts; the start ID is a blocking factor in both analyses. (3) StPT S4 reports two quantities: the within-start repeat SD (existing 0.3-nat limit) and the between-start shift, both also in vote probability at the operating point (p near 0.5). (4) Between-start variance is propagated into kernel uncertainty and into the power tier tables. (5) Tripwire: if the between-start shift in vote probability exceeds half the reference effect (StPT 0.025; Missing Piece 0.05), blocking becomes mandatory for every analysis and the trigger is logged in `AMENDMENTS.md`. | owner, after the v1.2.1 candidate failed (A6) |
 
 ## Proposed (Step 0, 2026-10-31; awaiting the owner)
 
@@ -47,15 +48,6 @@ Superseded entries are struck through and kept.
   - Bank sizes.
   - Bridge memory policy and attribution.
   - Power tier.
-- **Server-restart drift.** The owner chose option (b) (D13) and then approved the confirmation and release of C2e
-  (2026-11-01).
-  - The confirmation FAILED: Gemma-2-9B and Qwen3.5-9B still drift across cold starts, and Gemma-3-27B cannot start with
-    the named attention backend. The v1.2.1 candidate was rejected and not tagged.
-  - **Open:** (a) stay on v1.2.0 and accept drift of at most 0.25 nats: record the server start in every manifest, and
-    let StPT S4 measure repeat noise across cold starts, against its 0.3-nat gate. Or (d) fund a deeper investigation
-    with an uncertain outcome.
-  - Recommended: (a).
-
 - **System messages.** Gemma-2's official template refuses a system role. The pipeline's gemma2 serializer folds system
   text into the first user turn (turn 0), as the earlier Gemma-2 work did. Template agreement is therefore checked on
   system-free conversations, where all five models agree (StPT S0). Whether StPT and MP prompts use a system message is

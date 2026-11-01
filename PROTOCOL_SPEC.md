@@ -28,6 +28,21 @@ challenge set.
   - Missing Piece samples votes at temperature 0.6, top-p 0.9.
 - **Probes:** forked, non-returning branches in both studies, with byte-identity checks.
 
+## Server starts (D14, 2026-11-01)
+
+Under pipeline v1.2.0, logprobs are bit-identical within one vLLM server start, but can move by 1–2 bf16 steps (up to
+0.25 nats) between starts (StPT S0, sections 1b and 4c). Both studies therefore:
+- record a **server-start ID** in every run manifest: pod id + start index + start time;
+- run **every paired contrast within one start**:
+  - StPT: live and blind runs, and the pulsed and unpulsed branches of each saved state;
+  - Missing Piece: the four cells of a scenario;
+- balance conditions across starts, and use the start ID as a **blocking factor** in the analysis;
+- carry between-start variance into kernel uncertainty (StPT) and into the power tier tables (both).
+
+**Tripwire.** If the between-start shift in vote probability at p ≈ 0.5 exceeds half the reference effect (StPT 0.025,
+Missing Piece 0.05), blocking becomes mandatory for every analysis, not only the paired contrasts, and the trigger is
+logged in `AMENDMENTS.md`. StPT gate S4 measures this shift on the shared pipeline.
+
 ## Matched bridge interface (after both core studies)
 
 The bridge holds these fixed across its two arms, on a complete group of 5:
