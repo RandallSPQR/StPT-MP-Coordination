@@ -47,12 +47,14 @@ Superseded entries are struck through and kept.
   - Bank sizes.
   - Bridge memory policy and attribution.
   - Power tier.
-- **Server-restart drift.** The owner chose option (b): test settings for a v1.2.1 serving stack (2026-10-31).
-  Result (StPT `gates/S0/S0_REPORT.md` 4b):
-  - **C2e** = `VLLM_BATCH_INVARIANT=1` + `--attention-backend FLASH_ATTN` + `--enforce-eager` is bit-identical across
-    cold starts for Llama-8B and Qwen3.5-9B. The other three settings tested are not.
-  - Its cost: +84% / +34% per call.
-  - Open: confirm C2e on all five models, then release it as v1.2.1 (both studies re-pin).
+- **Server-restart drift.** The owner chose option (b) (D13) and then approved the confirmation and release of C2e
+  (2026-11-01).
+  - The confirmation FAILED: Gemma-2-9B and Qwen3.5-9B still drift across cold starts, and Gemma-3-27B cannot start with
+    the named attention backend. The v1.2.1 candidate was rejected and not tagged.
+  - **Open:** (a) stay on v1.2.0 and accept drift of at most 0.25 nats: record the server start in every manifest, and
+    let StPT S4 measure repeat noise across cold starts, against its 0.3-nat gate. Or (d) fund a deeper investigation
+    with an uncertain outcome.
+  - Recommended: (a).
 
 - **System messages.** Gemma-2's official template refuses a system role. The pipeline's gemma2 serializer folds system
   text into the first user turn (turn 0), as the earlier Gemma-2 work did. Template agreement is therefore checked on

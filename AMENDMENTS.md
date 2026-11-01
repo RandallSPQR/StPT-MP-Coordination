@@ -15,6 +15,7 @@ Two kinds of entry, never mixed:
 | A3 | 2026-10-31 | both | Decisions D8–D11 accepted. **Known defect in pipeline v1.2.0, not fixed in place:** `pipeline/lineup/pod/serve_lineup.sh` runs `python -m lineup.serve`, which cannot import `lineup` from an installed copy. The serving command itself is correct: the `lineup-serve-cmd` console script works. StPT's S0 driver (`gates/S0/gpu/box_identity.sh`) performs the same steps with the pipeline's own functions and console scripts. A fix would be v1.2.1. | none: no study data exists |
 | A4 | 2026-10-31 | both | Record only, no change to the pipeline. Box identity check passed 5/5 (StPT S0). It ran on an RTX PRO 6000 Blackwell; the owner chose it as the fallback when no A100 was available. The first pod's 27B downloads failed on a full disk, and the 27B models were re-run on a second pod. Finding: no bit-identity across server restarts (see `DECISIONS.md`, unresolved). | none: no study data exists |
 | A5 | 2026-10-31 | both | Record only. Decisions D12–D13. Restart test: C2e removes cross-start drift for the two screening models (StPT S0 4b). No pipeline change yet: confirmation on all five models and a v1.2.1 release await the owner. | none: no study data exists |
+| A6 | 2026-11-01 | both | Record only. The pipeline v1.2.1 candidate (branch `release/v1.2.1`, `ffc4902a1db0`) failed its confirmation run and was **rejected, not tagged**; the branch is marked REJECTED. Both studies stay on v1.2.0. See StPT S0 report 4c. | none: no study data exists |
 
 ## Post-outcome deviations
 
