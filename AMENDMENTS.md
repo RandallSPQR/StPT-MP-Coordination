@@ -20,4 +20,6 @@ Two kinds of entry, never mixed:
 
 ## Post-outcome deviations
 
-None.
+| # | date | study | deviation | outcome seen before the decision | original result kept |
+|---|---|---|---|---|---|
+| DV1 | 2026-11-01 | StPT | **S1, B3 smooth cases (T = 0 random-field avalanches).** Judged on the mean of 10 independent graphs under the 4 SE + 0.005 rule used by B1, B2 and B4, instead of a single graph within 0.02. Reason: the exact curve is an ensemble result, so the single-graph comparison was mis-specified. The d = 6 pass/fail point moves from σ = 3.5 (near-critical) to σ = 4.5. σ = 3.5 is kept as a reported diagnostic (≥ 10 graphs, mean and spread, no pass/fail). Re-run on new seeds. The measured graph-to-graph spreads (0.025 at d = 4 on the steep section; up to 0.19 near critical disorder at d = 6) become inputs to the S9 power simulation. Owner-approved. | yes: B3's smooth cases failed the pre-stated single-graph tolerance (max 0.050) | yes: StPT `gates/S1/S1_REPORT.md`, `results/B3.json`, `diagnostics/B3_realisation_spread.json` |
