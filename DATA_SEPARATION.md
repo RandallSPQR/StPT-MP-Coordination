@@ -3,7 +3,7 @@
 | date | study | bank / dataset | split | who may read it | status |
 |---|---|---|---|---|---|
 | 2026-11-01 | StPT | development bank: 16 scenario specs + 72 allocations (StPT `gates/S2/banks/development/`, commit 0822269) | development | every StPT gate before S10 | committed before any model call; hashes in `gates/S2/banks/MANIFEST.json` (file sha256 4de05fa2e423416c…) |
-| 2026-11-01 | StPT | confirmatory bank: 12 scenario specs, no allocations (StPT `gates/S2/banks/confirmatory/`, commit 0822269) | confirmatory | specs only; allocations are drawn after S9 by the fixed rule `conf-alloc|<scenario_id>|<k>` | stories disjoint from development; no model call on these specs before the confirmatory run |
+| 2026-11-01 | StPT | confirmatory bank: 12 scenario specs, no allocations (StPT `gates/S2/banks/confirmatory/`, commit 0822269; source set changed to {3/4, 9/10} by D18, commit 4d38869, new hashes in MANIFEST, file sha256 74c1e2faaf801b21…) | confirmatory | specs only; allocations are drawn after S9 by the fixed rule `conf-alloc|<scenario_id>|<k>` | stories disjoint from development; no model call on these specs before the confirmatory run |
 
 Rules (both briefs):
 - Development and confirmatory banks are written and committed separately, before any model call on them.

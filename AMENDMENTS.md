@@ -20,6 +20,7 @@ Two kinds of entry, never mixed:
 | A8 | 2026-11-01 | both | Evidence schema v1.0 written (StPT S2). StPT development bank committed and confirmatory specs committed, with provisional conventions awaiting the owner (StPT `gates/S2/CONVENTIONS.md`). | none: no model has seen a scenario |
 | A9 | 2026-11-01 | StPT | D15–D17: S2 conventions accepted as provisional; no shared-report variants in the confirmatory bank; difficulty chosen by blind-board accuracy only (rule fixed before any difficulty result). | none: no model has seen a scenario; no difficulty simulation had run |
 | A10 | 2026-11-01 | StPT | D18: difficulty chosen by simulated power (rule from the owner; computation pre-stated in StPT `gates/S2/difficulty/POWER_PLAN.md`): informed fraction 0.5, sources {3/4, 9/10}; S8 region adds {3/5, 3/4, 9/10}. The provisional source set of D15 stays in the development bank until S8. Shared-report variants excluded from the confirmatory bank (confirmed, D16). | none: no live data; CPU proxy simulation only |
+| A11 | 2026-11-01 | StPT | D19: secondary analysis by informed status pre-registered. The 12 confirmatory scenario specs now carry the D18 source set {3/4, 9/10} at informed fraction 0.5; the hashes changed (StPT `gates/S2/banks/MANIFEST.json`, file sha256 74c1e2faaf801b21…). No model had seen these specs. The StPT brief states the setting and the split. | none: no live data; no model call on the confirmatory bank |
 
 ## Post-outcome deviations
 
