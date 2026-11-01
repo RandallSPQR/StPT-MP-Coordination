@@ -17,6 +17,7 @@ Two kinds of entry, never mixed:
 | A5 | 2026-10-31 | both | Record only. Decisions D12–D13. Restart test: C2e removes cross-start drift for the two screening models (StPT S0 4b). No pipeline change yet: confirmation on all five models and a v1.2.1 release await the owner. | none: no study data exists |
 | A6 | 2026-11-01 | both | Record only. The pipeline v1.2.1 candidate (branch `release/v1.2.1`, `ffc4902a1db0`) failed its confirmation run and was **rejected, not tagged**; the branch is marked REJECTED. Both studies stay on v1.2.0. See StPT S0 report 4c. | none: no study data exists |
 | A7 | 2026-11-01 | both | **Prospective:** server-start blocking (D14). Both studies stay on v1.2.0. Manifests record the server-start ID. Paired contrasts run within one start. Start is a blocking factor. StPT S4 reports within- and between-start noise. Between-start variance enters kernel uncertainty and the power tiers. Tripwire at half the reference effect. Both briefs' protocol and analysis sections updated to match. | none: no study data exists |
+| A8 | 2026-11-01 | both | Evidence schema v1.0 written (StPT S2). StPT development bank committed and confirmatory specs committed, with provisional conventions awaiting the owner (StPT `gates/S2/CONVENTIONS.md`). | none: no model has seen a scenario |
 
 ## Post-outcome deviations
 

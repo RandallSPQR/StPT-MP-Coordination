@@ -5,8 +5,13 @@ fill at their own gates. Nothing here is frozen.
 
 ## Evidence schema
 
-**Schema version: unassigned.** The first version is written at StPT gate S2 and Missing Piece gate S1, before any model
-sees a scenario. Both briefs already fix its content. Per scenario:
+**Schema version: 1.0** (2026-11-01): `schema/evidence_schema_v1.0.json`. It was written at StPT gate S2, and the
+reference implementation is StPT `stpt/evidence.py`. Missing Piece adopts it at its S1. Its study-specific fields
+(briefings, hearsay report, verifier) sit under `story` and `evidence_model` without changing the required fields.
+A change to the required fields is a new schema version and an entry in `AMENDMENTS.md`.
+
+How StPT uses it (provisional conventions, StPT `gates/S2/CONVENTIONS.md`): every evidence item is a report from a
+source with a stated accuracy in plain frequencies. Its designed LR is a/(1 − a) toward the option it favours. Both briefs already fix its content. Per scenario:
 - a hidden state S ∈ {A, B} and a prior (0.5);
 - for every evidence item, a designed likelihood ratio P(item | A) / P(item | B);
 - a dependence structure: shared items counted once; declared-dependent items grouped and counted once per group;
