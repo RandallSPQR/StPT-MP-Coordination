@@ -32,6 +32,9 @@ challenge set.
   - StPT samples from the A/B probabilities at decision noise T (logits / T), with seeded draws; never argmax.
     T (D23): primary, per model, set so that a lone 3/4 report gives its Bayesian posterior 0.75 (Llama-3.1-8B 0.50,
     Gemma-2-9B 2.15, Qwen3.5-9B 1.78, Gemma-3-27B 10.40, Qwen3.5-27B 2.88); secondary, T = 1 on a seeded share.
+    Initial vote (D25): sampled at T from the W3 blind, evidence-only call with a seeded placeholder own vote balanced
+    within evidence type, within server-start blocks and across graph positions, identical for live and blind;
+    sensitivity arm: seeded 50/50 start on a seeded share.
   - Missing Piece samples votes at temperature 0.6, top-p 0.9.
 - **Probes:** forked, non-returning branches in both studies, with byte-identity checks.
 - **Answer instruction (D20, 2026-11-02):** every vote prompt in both studies ends with a strict one-letter
