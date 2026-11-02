@@ -32,6 +32,12 @@ challenge set.
   - StPT samples from the A/B probabilities at decision noise T (logits / T), with seeded draws; never argmax.
   - Missing Piece samples votes at temperature 0.6, top-p 0.9.
 - **Probes:** forked, non-returning branches in both studies, with byte-identity checks.
+- **Answer instruction (D20, 2026-11-02):** every vote prompt in both studies ends with a strict one-letter
+  instruction. Missing Piece's vote prompt uses StPT W3's sentence: "Reply with exactly one letter, A or B, and
+  nothing else." Under StPT S3, this instruction cut non-A/B mass at the vote question from 0.38–0.59 (three models,
+  plain "Answer with a single letter") to at most 0.003.
+- **StPT board wordings:** locked here, verbatim, once the held-out check has run (D20; section "StPT board wordings").
+- **StPT letter mapping (D20):** balanced within each server-start block (seeded permuted blocks; recorded per call).
 
 ## Server starts (D14, 2026-11-01)
 
