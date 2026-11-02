@@ -178,6 +178,12 @@ Under pipeline v1.2.0, logprobs are bit-identical within one vLLM server start, 
 Missing Piece 0.05), blocking becomes mandatory for every analysis, not only the paired contrasts, and the trigger is
 logged in `AMENDMENTS.md`. StPT gate S4 measures this shift on the shared pipeline.
 
+**Measured (StPT S4, 2026-11-02; A16).** Within a start, readouts are bit-identical (all five models). Between starts:
+S_p (vote-probability shift at p = 0.5, T = 1) is 0.018–0.021 for Llama-3.1-8B, Qwen3.5-9B and Qwen3.5-27B, 0 for
+Gemma-2-9B, and 0.049–0.056 for Gemma-3-27B. **StPT's tripwire is triggered: blocking by start is mandatory for every
+StPT analysis.** Missing Piece's (0.05): open, owner's decision. Starts fall into a few discrete numerical states;
+systematic per-start offsets are negligible.
+
 ## Matched bridge interface (after both core studies)
 
 The bridge holds these fixed across its two arms, on a complete group of 5:
