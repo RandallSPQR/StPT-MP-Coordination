@@ -4,7 +4,7 @@ One record for two complementary studies, linked from both repositories:
 
 - **Stigmergic Phase Transitions (StPT)**, revision 3: https://github.com/RandallSPQR/Stigmergic-Phase-Transitions
   (brief: https://claude.ai/artifact/Q36cWtMumtJPs3semD76ni)
-- **Missing Piece**, revision 2: https://github.com/RandallSPQR/missing-piece (created 2026-11-03, D31; brief: https://claude.ai/artifact/8KE5pFnmDEdJYGyHTjDcG7)
+- **Missing Piece**, revision 2: https://github.com/RandallSPQR/missing-piece (created 2026-11-03, D32; brief: https://claude.ai/artifact/8KE5pFnmDEdJYGyHTjDcG7)
 
 The two studies are complementary, not matched. They share the scenario format, the evidence schema, the pinned model
 pipeline and this record. A matched bridge follows both core studies; its interface lives in `PROTOCOL_SPEC.md`.

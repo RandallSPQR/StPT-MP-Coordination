@@ -51,11 +51,11 @@ recomputes to its pin. Report: `pipeline/lineup/identity_reports/offline_2026-10
 ## Studies pinned to this release
 
 - StPT: `pins.yaml` (StPT repository).
-- Missing Piece (2026-11-03, D31): `pins.yaml` (MP repository), installed by commit; `mp.manifest.check_environment`
+- Missing Piece (2026-11-03, D32): `pins.yaml` (MP repository), installed by commit; `mp.manifest.check_environment`
   runs `lineup.manifest.check_pin` for every model before any call. MP S0 (CPU) re-verified the tag → commit mapping and
   every chat_template_hash against the templates used (MP `gates/S0/S0_REPORT.md`).
 
-## Versions by study (D40, 2026-11-03)
+## Versions by study (D41, 2026-11-03)
 
 - **StPT: v1.2.0**, pinned. All its gate evidence was produced there, and it needs batch size 1 and exact logprobs.
 - **Missing Piece: v1.3.0** (P12), once someone with write access applies and tags it. Until then MP stays on v1.2.0
