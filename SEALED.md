@@ -15,3 +15,5 @@ owner's request: the opening script appends a row to the openings table **before
 
 | date (UTC) | file | requested by | reason |
 |---|---|---|---|
+| 2026-11-03 06:22 | `gates/S10/sealed/s10_predictions.json.gz.b64` | owner (D45) | inclusion in the pre-registration at freeze (D45; after the freeze commit 17063f58c9fb6f9064477c555c5e42200e70115f) |
+| 2026-11-03 06:22 | `gates/S8/sealed/s8_sealed.json.gz.b64` | owner (D45) | inclusion in the pre-registration at freeze (D45; after the freeze commit 17063f58c9fb6f9064477c555c5e42200e70115f) |
