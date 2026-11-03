@@ -1,6 +1,6 @@
 # Shared protocol specification
 
-**Version: 0.0 (skeleton).** It records what the two briefs already fix in common and holds slots that the studies
+**Version: 0.1 (2026-11-03: Missing Piece section and bridge decision rule added; 0.0 was the skeleton).** It records what the two briefs already fix in common and holds slots that the studies
 fill at their own gates. Nothing here is frozen.
 
 ## Evidence schema
@@ -168,6 +168,21 @@ What is your vote now? Give exactly one letter, A or B, with nothing else.
 - own_vote: `Question about your own vote so far: which option is it? Give exactly one letter, A or B, with nothing else.`
 - contact_majority: `Question about your contacts: which option do more of them vote for? Give exactly one letter, A or B, with nothing else.`
 
+## Missing Piece model calls (2026-11-03; D31–D38; not frozen)
+
+- **Contexts** are system-free and strictly alternating: the opening user turn holds role-neutral instructions, the
+  question and the agent's own briefing; the agent's own messages are its assistant turns; other agents' messages
+  (labelled Agent 1–5) and round markers sit in the user turns between. All five templates agree with the canonical
+  serializers on these contexts (MP S0). Proposed in P8.
+- **Discussion messages** are generated through `/v1/completions` with the canonical token ids (never the server's
+  template), seeded per call; sampling proposed in P8.
+- **Votes:** the vote prompt ends with the strict instruction (D34); one seeded sample at temperature 0.6, top-p 0.9;
+  the exact readout (P(A), P(B), non-A/B mass) is recorded on the same prompt; invalid outputs get up to three seeded
+  retries, then count as invalid.
+- **Probes** (private conviction; comprehension) run on forked branches and never return; live contexts are checked
+  byte-identical with and without probes (MP `mp/isolation.py`; CPU check passes, GPU check in MP S4).
+- **Wording:** MP-W1 is the candidate (MP `mp/prompts.py`); it is locked here only after MP S3's held-out check (D33).
+
 ## Server starts (D14, 2026-11-01)
 
 Under pipeline v1.2.0, logprobs are bit-identical within one vLLM server start, but can move by 1–2 bf16 steps (up to
@@ -201,3 +216,10 @@ The bridge holds these fixed across its two arms, on a complete group of 5:
 The two arms are the Missing Piece talk protocol and a vote-trace protocol (each agent sees the other four agents'
 current votes over the same number of rounds). Differences to record: memory (the vote-trace memory policy is to be
 specified), bandwidth, and attribution (labelled or anonymous votes, to be specified).
+
+**Decision-rule sampling (D38, 2026-11-03).** The two core studies turn a readout into a vote differently, and the bridge
+must state which rule each arm uses: StPT samples votes from the A/B probabilities at per-model Bayes-calibrated decision
+noise T (D23: T set so a lone 3/4 report gives posterior 0.75; Llama-3.1-8B 0.50, Gemma-2-9B 2.15, Qwen3.5-9B 1.78,
+Gemma-3-27B 10.40, Qwen3.5-27B 2.88); Missing Piece samples votes at temperature 0.6, top-p 0.9. The "same decision rule
+(final private vote)" in the bridge therefore needs one sampling rule chosen for both arms, or the difference recorded
+as a further difference between arms.
