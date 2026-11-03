@@ -55,6 +55,11 @@ recomputes to its pin. Report: `pipeline/lineup/identity_reports/offline_2026-10
   runs `lineup.manifest.check_pin` for every model before any call. MP S0 (CPU) re-verified the tag → commit mapping and
   every chat_template_hash against the templates used (MP `gates/S0/S0_REPORT.md`).
 
+## Proposed next release (2026-11-03; not tagged)
+
+v1.3.0, named serving modes (P12). The default `strict` serves exactly as v1.2.0. The patch is in Missing Piece
+`proposals/pipeline-v1.3.0/`. Not v1.2.1: that name belongs to the candidate rejected in A6.
+
 ## Change policy
 
 Any change to a pinned value, a serializer or the serving stack makes a new version (v1.2.1 or later) and an entry in

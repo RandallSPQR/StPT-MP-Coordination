@@ -182,6 +182,10 @@ What is your vote now? Give exactly one letter, A or B, with nothing else.
 - **Probes** (private conviction; comprehension) run on forked branches and never return; live contexts are checked
   byte-identical with and without probes (MP `mp/isolation.py`; CPU check passes, GPU check in MP S4).
 - **Wording:** MP-W1 is the candidate (MP `mp/prompts.py`); it is locked here only after MP S3's held-out check (D33).
+- **Probes (D39):** private conviction for the four receivers after round ⌈R/2⌉ and round R. A speaker final-round probe
+  is proposed (P13).
+- **Serving (D39, P12):** `strict` on v1.2.0 (batch size 1, prefix caching off). A throughput mode needs v1.3.0 and MP
+  S0-GPU validation. In lockstep serving the four cells of a quad share cohorts, and each call's cohort is recorded.
 
 ## Server starts (D14, 2026-11-01)
 
