@@ -58,8 +58,8 @@ recomputes to its pin. Report: `pipeline/lineup/identity_reports/offline_2026-10
 ## Versions by study (D41, 2026-11-03)
 
 - **StPT: v1.2.0**, pinned. All its gate evidence was produced there, and it needs batch size 1 and exact logprobs.
-- **Missing Piece: v1.3.0** (P12), once someone with write access applies and tags it. Until then MP stays on v1.2.0
-  `strict`.
+- **Missing Piece: v1.3.0** (P12), tagged by the owner 2026-11-03 at `37031bcd0d33b6dbd2c6f6573127714367c306fe`
+  (lightweight; parent v1.2.0 `5ca15f56`); MP pinned to it (A34).
   - The patch is in MP `proposals/pipeline-v1.3.0/`. Not v1.2.1: that name belongs to the candidate rejected in A6.
   - The default `strict` mode serves exactly as v1.2.0. The throughput modes are opt-in, and MP's S0-GPU validates them
     before any other run.
