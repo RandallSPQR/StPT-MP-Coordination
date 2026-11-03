@@ -182,10 +182,13 @@ What is your vote now? Give exactly one letter, A or B, with nothing else.
 - **Probes** (private conviction; comprehension) run on forked branches and never return; live contexts are checked
   byte-identical with and without probes (MP `mp/isolation.py`; CPU check passes, GPU check in MP S4).
 - **Wording:** MP-W1 is the candidate (MP `mp/prompts.py`); it is locked here only after MP S3's held-out check (D33).
-- **Probes (D39):** private conviction for the four receivers after round ⌈R/2⌉ and round R. A speaker final-round probe
-  is proposed (P13).
-- **Serving (D39, P12):** `strict` on v1.2.0 (batch size 1, prefix caching off). A throughput mode needs v1.3.0 and MP
-  S0-GPU validation. In lockstep serving the four cells of a quad share cohorts, and each call's cohort is recorded.
+- **Probes (D39, D41):** private conviction for the four receivers after round ⌈R/2⌉ and round R, and for the speaker
+  after round R.
+- **Grading (D41, D42):** Paper 1's graders via OpenRouter. Primary `anthropic/claude-sonnet-4.5`; gate grader
+  `google/gemini-2.5-flash` on the same items; both non-thinking, temperature 0. Speaker messages coded on every quad,
+  other measures on the 50% quad subsample. Paper 1's per-cue kappa/AC1 gate applies.
+- **Serving (D39, D40):** `strict` (batch size 1, prefix caching off) until MP pins v1.3.0. A throughput mode needs
+  v1.3.0 and MP S0-GPU validation. In lockstep serving the four cells of a quad share cohorts, and each call's cohort is recorded.
 
 ## Server starts (D14, 2026-11-01)
 
@@ -227,3 +230,7 @@ noise T (D23: T set so a lone 3/4 report gives posterior 0.75; Llama-3.1-8B 0.50
 Gemma-3-27B 10.40, Qwen3.5-27B 2.88); Missing Piece samples votes at temperature 0.6, top-p 0.9. The "same decision rule
 (final private vote)" in the bridge therefore needs one sampling rule chosen for both arms, or the difference recorded
 as a further difference between arms.
+
+**Pipeline and serving (D40, 2026-11-03).** The bridge runs both arms on **one pipeline version and one serving mode**.
+StPT's core stays on v1.2.0, while Missing Piece moves to v1.3.0, so the bridge states which version and mode it uses for
+both arms.

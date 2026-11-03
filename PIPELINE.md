@@ -55,10 +55,18 @@ recomputes to its pin. Report: `pipeline/lineup/identity_reports/offline_2026-10
   runs `lineup.manifest.check_pin` for every model before any call. MP S0 (CPU) re-verified the tag → commit mapping and
   every chat_template_hash against the templates used (MP `gates/S0/S0_REPORT.md`).
 
-## Proposed next release (2026-11-03; not tagged)
+## Versions by study (D40, 2026-11-03)
 
-v1.3.0, named serving modes (P12). The default `strict` serves exactly as v1.2.0. The patch is in Missing Piece
-`proposals/pipeline-v1.3.0/`. Not v1.2.1: that name belongs to the candidate rejected in A6.
+- **StPT: v1.2.0**, pinned. All its gate evidence was produced there, and it needs batch size 1 and exact logprobs.
+- **Missing Piece: v1.3.0** (P12), once someone with write access applies and tags it. Until then MP stays on v1.2.0
+  `strict`.
+  - The patch is in MP `proposals/pipeline-v1.3.0/`. Not v1.2.1: that name belongs to the candidate rejected in A6.
+  - The default `strict` mode serves exactly as v1.2.0. The throughput modes are opt-in, and MP's S0-GPU validates them
+    before any other run.
+  - D1 and D9 are amended for MP only.
+- **Link check, CPU (done):** v1.3.0-strict and v1.2.0 give identical argv, env, lineup entries, profiles, serializers
+  and readout code for all five models (MP `gates/S0/link_check/`). The GPU part is optional and pending.
+- **The matched bridge** runs both arms on one pipeline version and one serving mode.
 
 ## Change policy
 
